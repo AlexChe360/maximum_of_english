@@ -1,0 +1,110 @@
+## Russian translations for MaximumOfEnglish
+msgid ""
+msgstr ""
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: lib/maximum_of_english_web/components/core_components.ex:368
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr "Действия"
+
+#: lib/maximum_of_english_web/live/user_live/registration.ex:16
+#, elixir-autogen, elixir-format
+msgid "Already registered?"
+msgstr "Уже зарегистрированы?"
+
+#: lib/maximum_of_english_web/components/layouts.ex:72
+#: lib/maximum_of_english_web/components/layouts.ex:84
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr "Попытка переподключения"
+
+#: lib/maximum_of_english_web/live/user_live/registration.ex:51
+#, elixir-autogen, elixir-format
+msgid "Create an account"
+msgstr "Создать аккаунт"
+
+#: lib/maximum_of_english_web/live/user_live/registration.ex:50
+#, elixir-autogen, elixir-format
+msgid "Creating account..."
+msgstr "Создание аккаунта..."
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:16
+#, elixir-autogen, elixir-format
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:40
+#: lib/maximum_of_english_web/live/user_live/registration.ex:37
+#, elixir-autogen, elixir-format
+msgid "Email"
+msgstr "Электронная почта"
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:11
+#: lib/maximum_of_english_web/live/user_live/login.ex:61
+#: lib/maximum_of_english_web/live/user_live/registration.ex:18
+#, elixir-autogen, elixir-format
+msgid "Log in"
+msgstr "Войти"
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:48
+#: lib/maximum_of_english_web/live/user_live/registration.ex:45
+#, elixir-autogen, elixir-format
+msgid "Password"
+msgstr "Пароль"
+
+#: lib/maximum_of_english_web/live/user_live/registration.ex:14
+#, elixir-autogen, elixir-format
+msgid "Register for an account"
+msgstr "Регистрация"
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:56
+#, elixir-autogen, elixir-format
+msgid "Remember me"
+msgstr "Запомнить меня"
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:21
+#, elixir-autogen, elixir-format
+msgid "Sign up"
+msgstr "Зарегистрируйтесь"
+
+#: lib/maximum_of_english_web/components/layouts.ex:79
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr "Что-то пошло не так!"
+
+#: lib/maximum_of_english_web/components/layouts.ex:67
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr "Нет подключения к интернету"
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:14
+#, elixir-autogen, elixir-format
+msgid "You need to reauthenticate to perform sensitive actions on your account."
+msgstr "Для выполнения важных действий необходимо повторно войти в аккаунт."
+
+#: lib/maximum_of_english_web/components/core_components.ex:74
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr "закрыть"
+
+#: lib/maximum_of_english_web/live/user_live/login.ex:22
+#, elixir-autogen, elixir-format
+msgid "for an account now."
+msgstr "прямо сейчас."
+
+#: lib/maximum_of_english_web/live/user_live/registration.ex:20
+#, elixir-autogen, elixir-format
+msgid "to your account now."
+msgstr "в свой аккаунт."
+
+## Dynamic translations (used via Gettext.gettext/2 in templates)
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Log out"
+msgstr "Выйти"
+
+msgid "Register"
+msgstr "Регистрация"
