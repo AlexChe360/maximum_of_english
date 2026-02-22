@@ -35,12 +35,13 @@
   <body>
     <nav class="navbar bg-base-200 px-4 sm:px-6 lg:px-8">
       <div class="flex-1">
-        <a href="/" class="btn btn-ghost text-xl font-bold text-primary">
+        <a href="/" class="btn btn-ghost text-lg sm:text-xl font-bold text-primary">
           Maximum of English
         </a>
       </div>
       <div class="flex-none">
-        <ul class="menu menu-horizontal gap-2 items-center">
+        <%!-- Desktop menu --%>
+        <ul class="hidden md:flex menu menu-horizontal gap-2 items-center">
           <li><MaximumOfEnglishWeb.Layouts.theme_toggle /></li>
           <li><MaximumOfEnglishWeb.Components.LocaleSwitcher.locale_switcher conn={@conn} /></li>
           <%= if @current_scope && @current_scope.user do %>
@@ -56,6 +57,34 @@
             <li><.link href={~p"/users/log-in"} class="btn btn-sm btn-primary">{Gettext.gettext(MaximumOfEnglishWeb.Gettext, "Log in")}</.link></li>
           <% end %>
         </ul>
+        <%!-- Mobile menu (hamburger dropdown) --%>
+        <div class="md:hidden dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-50 w-56 p-2 shadow-lg">
+            <li class="menu-title">
+              <div class="flex items-center gap-2">
+                <MaximumOfEnglishWeb.Layouts.theme_toggle />
+                <MaximumOfEnglishWeb.Components.LocaleSwitcher.locale_switcher conn={@conn} />
+              </div>
+            </li>
+            <%= if @current_scope && @current_scope.user do %>
+              <li class="disabled"><span class="text-xs opacity-70">{@current_scope.user.email}</span></li>
+              <%= if @current_scope.user.role == "admin" do %>
+                <li><.link href={~p"/admin"}>Admin</.link></li>
+              <% else %>
+                <li><.link href={~p"/dashboard"}>{Gettext.gettext(MaximumOfEnglishWeb.Gettext, "Dashboard")}</.link></li>
+              <% end %>
+              <li><.link href={~p"/users/settings"}>{Gettext.gettext(MaximumOfEnglishWeb.Gettext, "Settings")}</.link></li>
+              <li><.link href={~p"/users/log-out"} method="delete">{Gettext.gettext(MaximumOfEnglishWeb.Gettext, "Log out")}</.link></li>
+            <% else %>
+              <li><.link href={~p"/users/log-in"}>{Gettext.gettext(MaximumOfEnglishWeb.Gettext, "Log in")}</.link></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </nav>
     {@inner_content}

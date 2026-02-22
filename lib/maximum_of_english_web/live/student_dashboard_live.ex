@@ -66,22 +66,22 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
-      <div class="flex gap-6">
+      <div class="flex flex-col lg:flex-row gap-4 lg:gap-6">
         <%!-- Left sidebar: Weeks --%>
-        <aside class="w-64 shrink-0">
+        <aside class="w-full lg:w-64 shrink-0">
           <div class="card bg-base-200 shadow-sm">
             <div class="card-body p-4">
               <h2 class="card-title text-lg">
                 <.icon name="hero-calendar-days" class="size-5" />
                 Weeks
               </h2>
-              <ul class="menu menu-sm">
+              <ul class="menu menu-sm lg:menu-vertical menu-horizontal flex-nowrap lg:flex-wrap overflow-x-auto">
                 <%= for week <- @weeks do %>
                   <li>
                     <button
                       phx-click="select_week"
                       phx-value-id={week.id}
-                      class={"#{if @selected_week && @selected_week.id == week.id, do: "active"}"}
+                      class={"whitespace-nowrap #{if @selected_week && @selected_week.id == week.id, do: "active"}"}
                     >
                       <span class="flex items-center gap-2">
                         <%= if week.is_unlocked or MapSet.member?(@student_unlocked_ids, week.id) do %>
@@ -89,7 +89,9 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                         <% else %>
                           <.icon name="hero-lock-closed" class="size-4 text-error" />
                         <% end %>
-                        Week {week.number}: {week.title}
+                        <span class="hidden sm:inline">Week {week.number}:</span>
+                        <span class="sm:hidden">W{week.number}:</span>
+                        {week.title}
                       </span>
                     </button>
                   </li>
@@ -99,7 +101,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
           </div>
 
           <%!-- Progress --%>
-          <div :if={@selected_week} class="card bg-base-200 shadow-sm mt-4">
+          <div :if={@selected_week} class="card bg-base-200 shadow-sm mt-2 lg:mt-4">
             <div class="card-body p-4">
               <h3 class="font-semibold text-sm">Progress</h3>
               <% total = length(@selected_week.lessons) %>
@@ -119,7 +121,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
           <%= if @selected_week do %>
             <%= if @selected_week.is_unlocked or MapSet.member?(@student_unlocked_ids, @selected_week.id) do %>
               <%!-- Tabs --%>
-              <div role="tablist" class="tabs tabs-box mb-6">
+              <div role="tablist" class="tabs tabs-box mb-4 sm:mb-6">
                 <button
                   role="tab"
                   class={"tab #{if @active_tab == "grammar", do: "tab-active"}"}
@@ -147,7 +149,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
               </div>
 
               <%!-- Lesson pills --%>
-              <div class="flex flex-wrap gap-2 mb-6">
+              <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
                 <%= for lesson <- lessons_for_tab(@selected_week, @active_tab) do %>
                   <% accessible = lesson_accessible?(@student_id, lesson, @selected_week) %>
                   <% completed = MapSet.member?(@completed_ids, lesson.id) %>
@@ -382,7 +384,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
     assigns = assign(assigns, :match_texts, match_texts)
 
     ~H"""
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <%!-- Left column: fixed items --%>
       <div class="space-y-2">
         <p class="text-xs font-semibold text-base-content/60 mb-1">Items</p>

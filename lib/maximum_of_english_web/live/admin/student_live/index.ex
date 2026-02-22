@@ -47,12 +47,12 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
         <:subtitle>{length(@students)} registered students</:subtitle>
       </.header>
 
-      <div :if={@generated_password} class="alert alert-success my-4">
-        <div>
-          <p class="font-semibold">Generated password (copy it now, it won't be shown again):</p>
-          <code class="text-lg select-all bg-base-100 px-3 py-1 rounded">{@generated_password}</code>
+      <div :if={@generated_password} class="alert alert-success my-4 flex-col sm:flex-row gap-2">
+        <div class="min-w-0">
+          <p class="font-semibold text-sm">Generated password (copy it now, it won't be shown again):</p>
+          <code class="text-base sm:text-lg select-all bg-base-100 px-3 py-1 rounded break-all">{@generated_password}</code>
         </div>
-        <button phx-click="dismiss_password" class="btn btn-sm btn-ghost">Dismiss</button>
+        <button phx-click="dismiss_password" class="btn btn-sm btn-ghost shrink-0">Dismiss</button>
       </div>
 
       <.table id="students" rows={@students}>

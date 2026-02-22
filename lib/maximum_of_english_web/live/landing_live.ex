@@ -11,19 +11,19 @@ defmodule MaximumOfEnglishWeb.LandingLive do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <%!-- Hero Section --%>
-      <section class="hero min-h-[60vh] bg-base-200 rounded-box">
-        <div class="hero-content text-center">
+      <section class="hero min-h-[50vh] sm:min-h-[60vh] bg-base-200 rounded-box">
+        <div class="hero-content text-center px-4">
           <div class="max-w-2xl">
-            <h1 class="text-5xl font-bold text-primary">Maximum of English</h1>
-            <p class="py-6 text-lg text-base-content/80">
+            <h1 class="text-3xl sm:text-5xl font-bold text-primary">Maximum of English</h1>
+            <p class="py-4 sm:py-6 text-base sm:text-lg text-base-content/80">
               Your personal path to fluency. Learn English with structured courses,
               weekly lessons, and progress tracking — all guided by a curator.
             </p>
-            <div class="flex gap-4 justify-center">
-              <.link navigate={~p"/placement"} class="btn btn-primary btn-lg">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <.link navigate={~p"/placement"} class="btn btn-primary btn-md sm:btn-lg">
                 Take Placement Test
               </.link>
-              <.link navigate={~p"/users/log-in"} class="btn btn-outline btn-lg">
+              <.link navigate={~p"/users/log-in"} class="btn btn-outline btn-md sm:btn-lg">
                 Log in
               </.link>
             </div>
@@ -32,9 +32,9 @@ defmodule MaximumOfEnglishWeb.LandingLive do
       </section>
 
       <%!-- How It Works --%>
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-center mb-8">How It Works</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <section class="py-8 sm:py-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">How It Works</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
           <div class="card bg-base-200 shadow-sm">
             <div class="card-body items-center text-center">
               <div class="badge badge-primary badge-lg text-lg font-bold w-10 h-10">1</div>
@@ -67,8 +67,8 @@ defmodule MaximumOfEnglishWeb.LandingLive do
       </section>
 
       <%!-- Features --%>
-      <section class="py-12">
-        <h2 class="text-3xl font-bold text-center mb-8">What You Get</h2>
+      <section class="py-8 sm:py-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">What You Get</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="card bg-base-200 shadow-sm">
             <div class="card-body">

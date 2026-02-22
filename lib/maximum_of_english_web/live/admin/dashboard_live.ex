@@ -28,7 +28,7 @@ defmodule MaximumOfEnglishWeb.Admin.DashboardLive do
         <:subtitle>Manage your courses, lessons, and tests.</:subtitle>
       </.header>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
         <div class="stat bg-base-200 rounded-box shadow-sm">
           <div class="stat-title">Courses</div>
           <div class="stat-value text-primary">{@courses_count}</div>
