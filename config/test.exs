@@ -30,6 +30,9 @@ config :maximum_of_english, MaximumOfEnglish.Mailer, adapter: Swoosh.Adapters.Te
 # Disable swoosh api client as it is only required for production adapters
 config :swoosh, :api_client, false
 
+# Use English locale in tests
+config :gettext, :default_locale, "en"
+
 # Print only warnings and errors during test
 config :logger, level: :warning
 

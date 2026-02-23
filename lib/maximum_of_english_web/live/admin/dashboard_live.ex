@@ -11,7 +11,7 @@ defmodule MaximumOfEnglishWeb.Admin.DashboardLive do
 
     socket =
       socket
-      |> assign(page_title: "Admin Dashboard")
+      |> assign(page_title: gettext("Admin Dashboard"))
       |> assign(courses_count: length(courses))
       |> assign(results_count: length(results))
       |> assign(students_count: students_count)
@@ -24,36 +24,36 @@ defmodule MaximumOfEnglishWeb.Admin.DashboardLive do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <.header>
-        Admin Dashboard
-        <:subtitle>Manage your courses, lessons, and tests.</:subtitle>
+        {gettext("Admin Dashboard")}
+        <:subtitle>{gettext("Manage your courses, lessons, and tests.")}</:subtitle>
       </.header>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
         <div class="stat bg-base-200 rounded-box shadow-sm">
-          <div class="stat-title">Courses</div>
+          <div class="stat-title">{gettext("Courses")}</div>
           <div class="stat-value text-primary">{@courses_count}</div>
           <div class="stat-actions">
-            <.link navigate={~p"/admin/courses"} class="btn btn-sm btn-primary">Manage</.link>
+            <.link navigate={~p"/admin/courses"} class="btn btn-sm btn-primary">{gettext("Manage")}</.link>
           </div>
         </div>
         <div class="stat bg-base-200 rounded-box shadow-sm">
-          <div class="stat-title">Placement Results</div>
+          <div class="stat-title">{gettext("Placement Results")}</div>
           <div class="stat-value text-secondary">{@results_count}</div>
           <div class="stat-actions">
-            <.link navigate={~p"/admin/placement-results"} class="btn btn-sm btn-secondary">View</.link>
+            <.link navigate={~p"/admin/placement-results"} class="btn btn-sm btn-secondary">{gettext("View")}</.link>
           </div>
         </div>
         <div class="stat bg-base-200 rounded-box shadow-sm">
-          <div class="stat-title">Placement Tests</div>
+          <div class="stat-title">{gettext("Placement Tests")}</div>
           <div class="stat-actions">
-            <.link navigate={~p"/admin/placement-tests"} class="btn btn-sm btn-accent">Manage</.link>
+            <.link navigate={~p"/admin/placement-tests"} class="btn btn-sm btn-accent">{gettext("Manage")}</.link>
           </div>
         </div>
         <div class="stat bg-base-200 rounded-box shadow-sm">
-          <div class="stat-title">Students</div>
+          <div class="stat-title">{gettext("Students")}</div>
           <div class="stat-value text-accent">{@students_count}</div>
           <div class="stat-actions">
-            <.link navigate={~p"/admin/students"} class="btn btn-sm btn-accent">Manage</.link>
+            <.link navigate={~p"/admin/students"} class="btn btn-sm btn-accent">{gettext("Manage")}</.link>
           </div>
         </div>
       </div>
@@ -61,20 +61,20 @@ defmodule MaximumOfEnglishWeb.Admin.DashboardLive do
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <.link navigate={~p"/admin/courses"} class="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
           <div class="card-body">
-            <h2 class="card-title"><.icon name="hero-book-open" class="size-5" /> Courses</h2>
-            <p class="text-sm text-base-content/70">Create and manage courses, weeks, and lessons.</p>
+            <h2 class="card-title"><.icon name="hero-book-open" class="size-5" /> {gettext("Courses")}</h2>
+            <p class="text-sm text-base-content/70">{gettext("Create and manage courses, weeks, and lessons.")}</p>
           </div>
         </.link>
         <.link navigate={~p"/admin/placement-tests"} class="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
           <div class="card-body">
-            <h2 class="card-title"><.icon name="hero-clipboard-document-check" class="size-5" /> Placement Tests</h2>
-            <p class="text-sm text-base-content/70">Manage placement test questions and view results.</p>
+            <h2 class="card-title"><.icon name="hero-clipboard-document-check" class="size-5" /> {gettext("Placement Tests")}</h2>
+            <p class="text-sm text-base-content/70">{gettext("Manage placement test questions and view results.")}</p>
           </div>
         </.link>
         <.link navigate={~p"/admin/students"} class="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
           <div class="card-body">
-            <h2 class="card-title"><.icon name="hero-users" class="size-5" /> Students</h2>
-            <p class="text-sm text-base-content/70">View students and manage their week access.</p>
+            <h2 class="card-title"><.icon name="hero-users" class="size-5" /> {gettext("Students")}</h2>
+            <p class="text-sm text-base-content/70">{gettext("View students and manage their week access.")}</p>
           </div>
         </.link>
       </div>

@@ -70,6 +70,9 @@ config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Gettext default locale
+config :gettext, :default_locale, "ru"
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

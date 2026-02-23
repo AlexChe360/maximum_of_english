@@ -9,7 +9,7 @@ defmodule MaximumOfEnglishWeb.PlacementLive do
 
     socket =
       socket
-      |> assign(page_title: "Placement Test")
+      |> assign(page_title: gettext("Placement Test"))
       |> assign(test: test)
       |> assign(step: :info)
       |> assign(answers: %{})
@@ -32,45 +32,45 @@ defmodule MaximumOfEnglishWeb.PlacementLive do
           <% :info -> %>
             <div class="card bg-base-200 shadow-lg">
               <div class="card-body">
-                <h2 class="card-title text-2xl">Placement Test</h2>
+                <h2 class="card-title text-2xl">{gettext("Placement Test")}</h2>
                 <%= if @test do %>
-                  <p class="text-base-content/70">{@test.description || "Find out your English level by answering a few questions."}</p>
+                  <p class="text-base-content/70">{@test.description || gettext("Find out your English level by answering a few questions.")}</p>
                   <p class="text-sm text-base-content/50">
-                    {@test.title} &middot; {length(@test.questions)} questions
+                    {@test.title} &middot; {length(@test.questions)} {gettext("questions")}
                   </p>
 
-                  <div class="divider">Your Information</div>
+                  <div class="divider">{gettext("Your Information")}</div>
 
                   <form phx-change="update_info" phx-submit="start_test" class="space-y-3">
                     <div class="fieldset">
                       <label>
-                        <span class="label">Name *</span>
+                        <span class="label">{gettext("Name")} *</span>
                         <input
                           type="text"
                           class={"w-full input #{if @form_errors[:name], do: "input-error"}"}
                           value={@name}
                           name="name"
-                          placeholder="Your name"
+                          placeholder={gettext("Your name")}
                         />
                       </label>
                       <p :if={@form_errors[:name]} class="text-error text-sm mt-1">{@form_errors[:name]}</p>
                     </div>
                     <div class="fieldset">
                       <label>
-                        <span class="label">Email *</span>
+                        <span class="label">{gettext("Email")} *</span>
                         <input
                           type="email"
                           class={"w-full input #{if @form_errors[:email], do: "input-error"}"}
                           value={@email}
                           name="email"
-                          placeholder="your@email.com"
+                          placeholder={gettext("your@email.com")}
                         />
                       </label>
                       <p :if={@form_errors[:email]} class="text-error text-sm mt-1">{@form_errors[:email]}</p>
                     </div>
                     <div class="fieldset">
                       <label>
-                        <span class="label">Phone</span>
+                        <span class="label">{gettext("Phone")}</span>
                         <input
                           type="tel"
                           class="w-full input"
@@ -83,14 +83,14 @@ defmodule MaximumOfEnglishWeb.PlacementLive do
 
                     <div class="card-actions justify-end mt-4">
                       <button type="submit" class="btn btn-primary">
-                        Start Test
+                        {gettext("Start Test")}
                       </button>
                     </div>
                   </form>
                 <% else %>
                   <div class="alert alert-warning">
                     <.icon name="hero-exclamation-triangle" class="size-5" />
-                    <span>No active placement test available at this time.</span>
+                    <span>{gettext("No active placement test available at this time.")}</span>
                   </div>
                 <% end %>
               </div>
@@ -101,7 +101,7 @@ defmodule MaximumOfEnglishWeb.PlacementLive do
             <div class="card bg-base-200 shadow-lg">
               <div class="card-body">
                 <div class="flex justify-between items-center mb-4">
-                  <h2 class="card-title">Question {@current_question + 1} / {length(@test.questions)}</h2>
+                  <h2 class="card-title">{gettext("Question")} {@current_question + 1} / {length(@test.questions)}</h2>
                   <progress
                     class="progress progress-primary w-32"
                     value={@current_question + 1}
@@ -134,17 +134,17 @@ defmodule MaximumOfEnglishWeb.PlacementLive do
                     phx-click="prev_question"
                     class="btn btn-ghost"
                   >
-                    <.icon name="hero-arrow-left" class="size-4" /> Previous
+                    <.icon name="hero-arrow-left" class="size-4" /> {gettext("Previous")}
                   </button>
                   <div :if={@current_question == 0} />
 
                   <%= if @current_question < length(@test.questions) - 1 do %>
                     <button phx-click="next_question" class="btn btn-primary">
-                      Next <.icon name="hero-arrow-right" class="size-4" />
+                      {gettext("Next")} <.icon name="hero-arrow-right" class="size-4" />
                     </button>
                   <% else %>
                     <button phx-click="submit_test" class="btn btn-success">
-                      Submit Test
+                      {gettext("Submit Test")}
                     </button>
                   <% end %>
                 </div>
@@ -154,28 +154,27 @@ defmodule MaximumOfEnglishWeb.PlacementLive do
           <% :result -> %>
             <div class="card bg-base-200 shadow-lg">
               <div class="card-body text-center">
-                <h2 class="text-3xl font-bold mb-2">Your Result</h2>
+                <h2 class="text-3xl font-bold mb-2">{gettext("Your Result")}</h2>
 
                 <div class="stats shadow bg-base-100 my-6">
                   <div class="stat">
-                    <div class="stat-title">Score</div>
+                    <div class="stat-title">{gettext("Score")}</div>
                     <div class="stat-value text-primary">{@result.score} / {@result.total}</div>
                     <div class="stat-desc">{round(@result.score / max(@result.total, 1) * 100)}%</div>
                   </div>
                   <div class="stat">
-                    <div class="stat-title">Level</div>
+                    <div class="stat-title">{gettext("Level")}</div>
                     <div class="stat-value text-secondary">{@result.level}</div>
-                    <div class="stat-desc">English proficiency</div>
+                    <div class="stat-desc">{gettext("English proficiency")}</div>
                   </div>
                 </div>
 
                 <p class="text-base-content/70 mb-6">
-                  Thank you, {@name}! Your results have been saved. Our team will contact you
-                  to assign you to the appropriate course.
+                  {gettext("Thank you, %{name}! Your results have been saved. Our team will contact you to assign you to the appropriate course.", name: @name)}
                 </p>
 
                 <div class="card-actions justify-center">
-                  <.link navigate={~p"/"} class="btn btn-primary">Back to Home</.link>
+                  <.link navigate={~p"/"} class="btn btn-primary">{gettext("Back to Home")}</.link>
                 </div>
               </div>
             </div>
@@ -200,8 +199,8 @@ defmodule MaximumOfEnglishWeb.PlacementLive do
     phone = params["phone"] || socket.assigns.phone
 
     errors = %{}
-    errors = if name == "", do: Map.put(errors, :name, "Name is required"), else: errors
-    errors = if email == "", do: Map.put(errors, :email, "Email is required"), else: errors
+    errors = if name == "", do: Map.put(errors, :name, gettext("Name is required")), else: errors
+    errors = if email == "", do: Map.put(errors, :email, gettext("Email is required")), else: errors
 
     if errors == %{} do
       {:noreply, assign(socket, name: name, email: email, phone: phone, step: :testing, form_errors: %{})}

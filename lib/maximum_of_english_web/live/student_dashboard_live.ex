@@ -10,7 +10,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
 
     socket =
       socket
-      |> assign(page_title: "Dashboard")
+      |> assign(page_title: gettext("Dashboard"))
       |> assign(courses: courses)
       |> assign(selected_course: List.first(courses))
       |> assign(weeks: [])
@@ -73,7 +73,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
             <div class="card-body p-4">
               <h2 class="card-title text-lg">
                 <.icon name="hero-calendar-days" class="size-5" />
-                Weeks
+                {gettext("Weeks")}
               </h2>
               <ul class="menu menu-sm lg:menu-vertical menu-horizontal flex-nowrap lg:flex-wrap overflow-x-auto">
                 <%= for week <- @weeks do %>
@@ -103,7 +103,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
           <%!-- Progress --%>
           <div :if={@selected_week} class="card bg-base-200 shadow-sm mt-2 lg:mt-4">
             <div class="card-body p-4">
-              <h3 class="font-semibold text-sm">Progress</h3>
+              <h3 class="font-semibold text-sm">{gettext("Progress")}</h3>
               <% total = length(@selected_week.lessons) %>
               <% done = MapSet.size(@completed_ids) %>
               <progress
@@ -111,7 +111,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                 value={done}
                 max={max(total, 1)}
               />
-              <span class="text-xs text-base-content/60">{done}/{total} lessons completed</span>
+              <span class="text-xs text-base-content/60">{done}/{total} {gettext("lessons completed")}</span>
             </div>
           </div>
         </aside>
@@ -128,7 +128,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                   phx-click="set_tab"
                   phx-value-tab="grammar"
                 >
-                  <.icon name="hero-academic-cap" class="size-4 mr-1" /> Grammar
+                  <.icon name="hero-academic-cap" class="size-4 mr-1" /> {gettext("Grammar")}
                 </button>
                 <button
                   role="tab"
@@ -136,7 +136,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                   phx-click="set_tab"
                   phx-value-tab="reading"
                 >
-                  <.icon name="hero-document-text" class="size-4 mr-1" /> Reading
+                  <.icon name="hero-document-text" class="size-4 mr-1" /> {gettext("Reading")}
                 </button>
                 <button
                   role="tab"
@@ -144,7 +144,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                   phx-click="set_tab"
                   phx-value-tab="listening"
                 >
-                  <.icon name="hero-speaker-wave" class="size-4 mr-1" /> Listening
+                  <.icon name="hero-speaker-wave" class="size-4 mr-1" /> {gettext("Listening")}
                 </button>
               </div>
 
@@ -181,9 +181,9 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                   <div class="card-body">
                     <h3 class="card-title">
                       <.icon name={kind_icon(@selected_lesson.kind)} class="size-5 text-primary" />
-                      {String.capitalize(@selected_lesson.kind)}: {@selected_lesson.title}
+                      {translate_kind(@selected_lesson.kind)}: {@selected_lesson.title}
                       <span :if={MapSet.member?(@completed_ids, @selected_lesson.id)} class="badge badge-success badge-sm">
-                        Completed
+                        {gettext("Completed")}
                       </span>
                     </h3>
 
@@ -192,11 +192,11 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                       <div :if={@selected_lesson.video_url} class="my-4">
                         <video controls class="w-full rounded-lg">
                           <source src={@selected_lesson.video_url} />
-                          Your browser does not support video.
+                          {gettext("Your browser does not support video.")}
                         </video>
                       </div>
                       <a :if={@selected_lesson.file_url} href={@selected_lesson.file_url} target="_blank" class="btn btn-outline btn-sm mt-2">
-                        <.icon name="hero-arrow-down-tray" class="size-4" /> Download Materials
+                        <.icon name="hero-arrow-down-tray" class="size-4" /> {gettext("Download Materials")}
                       </a>
                     </div>
 
@@ -206,7 +206,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                         {Phoenix.HTML.raw(@selected_lesson.description)}
                       </div>
                       <div :if={@selected_lesson.vocabulary} class="mt-4">
-                        <h4 class="font-semibold text-sm mb-2">Vocabulary</h4>
+                        <h4 class="font-semibold text-sm mb-2">{gettext("Vocabulary")}</h4>
                         <div class="bg-base-100 p-4 rounded-lg text-sm whitespace-pre-wrap">{@selected_lesson.vocabulary}</div>
                       </div>
                     </div>
@@ -219,7 +219,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                       <div :if={@selected_lesson.audio_url} class="my-4">
                         <audio controls class="w-full">
                           <source src={@selected_lesson.audio_url} />
-                          Your browser does not support audio.
+                          {gettext("Your browser does not support audio.")}
                         </audio>
                       </div>
                     </div>
@@ -240,7 +240,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                 <div class="card bg-base-200 shadow-sm">
                   <div class="card-body text-center text-base-content/50">
                     <.icon name="hero-cursor-arrow-rays" class="size-8 mx-auto mb-2" />
-                    <p>Select a lesson to start learning</p>
+                    <p>{gettext("Select a lesson to start learning")}</p>
                   </div>
                 </div>
               <% end %>
@@ -248,15 +248,15 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
               <div class="alert alert-warning">
                 <.icon name="hero-lock-closed" class="size-5" />
                 <div>
-                  <h3 class="font-bold">Week Locked</h3>
-                  <p>This week is not yet unlocked. Please wait for your curator to unlock it.</p>
+                  <h3 class="font-bold">{gettext("Week Locked")}</h3>
+                  <p>{gettext("This week is not yet unlocked. Please wait for your curator to unlock it.")}</p>
                 </div>
               </div>
             <% end %>
           <% else %>
             <div class="card bg-base-200 shadow-sm">
               <div class="card-body text-center">
-                <p class="text-base-content/50">No courses available yet. Please contact your curator.</p>
+                <p class="text-base-content/50">{gettext("No courses available yet. Please contact your curator.")}</p>
               </div>
             </div>
           <% end %>
@@ -296,26 +296,26 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
         <div class="card-body">
           <h4 class="card-title text-lg">
             <.icon name="hero-clipboard-document-check" class="size-5" />
-            Lesson Test
+            {gettext("Lesson Test")}
           </h4>
 
           <%= if @completed do %>
             <div class="alert alert-success">
               <.icon name="hero-check-circle" class="size-5" />
-              <span>You have already completed this lesson. Well done!</span>
+              <span>{gettext("You have already completed this lesson. Well done!")}</span>
             </div>
           <% else %>
             <%= if @test_result do %>
               <div class={"alert #{if @test_result.passed, do: "alert-success", else: "alert-error"}"}>
                 <.icon name={if @test_result.passed, do: "hero-check-circle", else: "hero-x-circle"} class="size-5" />
                 <div>
-                  <p class="font-semibold">Score: {@test_result.correct}/{@test_result.total}</p>
-                  <p :if={@test_result.passed}>Congratulations! Lesson marked as completed.</p>
-                  <p :if={!@test_result.passed}>You need at least 70% to pass. Try again!</p>
+                  <p class="font-semibold">{gettext("Score:")} {@test_result.correct}/{@test_result.total}</p>
+                  <p :if={@test_result.passed}>{gettext("Congratulations! Lesson marked as completed.")}</p>
+                  <p :if={!@test_result.passed}>{gettext("You need at least 70% to pass. Try again!")}</p>
                 </div>
               </div>
               <button :if={!@test_result.passed} phx-click="retry_test" class="btn btn-outline btn-sm mt-2">
-                Retry Test
+                {gettext("Retry Test")}
               </button>
             <% else %>
               <div class="space-y-4">
@@ -323,7 +323,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                   <div class="border border-base-300 rounded-lg p-4">
                     <p class="font-medium mb-3">
                       {question.position}. {question.text}
-                      <span :if={question.question_type == "matching"} class="badge badge-info badge-sm ml-1">Matching</span>
+                      <span :if={question.question_type == "matching"} class="badge badge-info badge-sm ml-1">{gettext("Matching")}</span>
                     </p>
 
                     <%= if question.question_type == "matching" do %>
@@ -352,7 +352,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
 
               <div class="card-actions justify-end mt-4">
                 <button phx-click="submit_lesson_test" phx-value-test-id={test.id} class="btn btn-primary">
-                  Submit Answers
+                  {gettext("Submit Answers")}
                 </button>
               </div>
             <% end %>
@@ -363,7 +363,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
       <%!-- No test - mark complete manually --%>
       <div :if={!@completed} class="mt-4">
         <button phx-click="mark_complete" phx-value-lesson-id={@lesson.id} class="btn btn-success">
-          <.icon name="hero-check" class="size-4" /> Mark as Complete
+          <.icon name="hero-check" class="size-4" /> {gettext("Mark as Complete")}
         </button>
       </div>
     <% end %>
@@ -387,7 +387,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <%!-- Left column: fixed items --%>
       <div class="space-y-2">
-        <p class="text-xs font-semibold text-base-content/60 mb-1">Items</p>
+        <p class="text-xs font-semibold text-base-content/60 mb-1">{gettext("Items")}</p>
         <%= for option <- @question.options do %>
           <div class="bg-base-100 border border-base-300 rounded-lg p-3 text-sm">
             {option.text}
@@ -397,7 +397,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
 
       <%!-- Right column: draggable match texts --%>
       <div>
-        <p class="text-xs font-semibold text-base-content/60 mb-1">Drag to match</p>
+        <p class="text-xs font-semibold text-base-content/60 mb-1">{gettext("Drag to match")}</p>
         <div
           id={"sortable-#{@question.id}"}
           phx-hook=".SortableMatching"
@@ -435,6 +435,11 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
   defp kind_icon("reading"), do: "hero-document-text"
   defp kind_icon("listening"), do: "hero-speaker-wave"
   defp kind_icon(_), do: "hero-question-mark-circle"
+
+  defp translate_kind("grammar"), do: gettext("Grammar")
+  defp translate_kind("reading"), do: gettext("Reading")
+  defp translate_kind("listening"), do: gettext("Listening")
+  defp translate_kind(kind), do: String.capitalize(kind)
 
   defp init_matching_answers(lesson_id) do
     case Tests.get_test_for_lesson(lesson_id) do

@@ -5,7 +5,7 @@ defmodule MaximumOfEnglishWeb.Plugs.SetLocale do
   import Plug.Conn
 
   @supported_locales ~w(en ru)
-  @default_locale "en"
+  @default_locale Application.compile_env(:gettext, :default_locale, "ru")
 
   def init(opts), do: opts
 

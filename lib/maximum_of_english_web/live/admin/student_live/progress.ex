@@ -10,7 +10,7 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Progress do
 
     socket =
       socket
-      |> assign(page_title: "Student Progress — #{student.email}")
+      |> assign(page_title: gettext("Student Progress") <> " — #{student.email}")
       |> assign(student: student)
       |> assign(courses: courses)
       |> assign(generated_password: nil)
@@ -28,10 +28,10 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Progress do
         {:noreply,
          socket
          |> assign(generated_password: password)
-         |> put_flash(:info, "Password generated for #{student.email}")}
+         |> put_flash(:info, gettext("Password generated for %{email}", email: student.email))}
 
       {:error, _} ->
-        {:noreply, put_flash(socket, :error, "Failed to generate password")}
+        {:noreply, put_flash(socket, :error, gettext("Failed to generate password"))}
     end
   end
 
@@ -82,25 +82,25 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Progress do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <.header>
-        Student Progress
+        {gettext("Student Progress")}
         <:subtitle>{@student.email}</:subtitle>
         <:actions>
           <button
             phx-click="generate_password"
-            data-confirm="Generate a new password? This will replace any existing password."
+            data-confirm={gettext("Generate a new password? This will replace any existing password.")}
             class="btn btn-sm btn-primary"
           >
-            Generate Password
+            {gettext("Generate Password")}
           </button>
         </:actions>
       </.header>
 
       <div :if={@generated_password} class="alert alert-success my-4 flex-col sm:flex-row gap-2">
         <div class="min-w-0">
-          <p class="font-semibold text-sm">Generated password (copy it now, it won't be shown again):</p>
+          <p class="font-semibold text-sm">{gettext("Generated password (copy it now, it won't be shown again):")}</p>
           <code class="text-base sm:text-lg select-all bg-base-100 px-3 py-1 rounded break-all">{@generated_password}</code>
         </div>
-        <button phx-click="dismiss_password" class="btn btn-sm btn-ghost shrink-0">Dismiss</button>
+        <button phx-click="dismiss_password" class="btn btn-sm btn-ghost shrink-0">{gettext("Dismiss")}</button>
       </div>
 
       <div :for={course_data <- @courses} class="mb-8">
@@ -110,16 +110,16 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Progress do
           <table class="table table-sm">
             <thead>
               <tr>
-                <th>Week</th>
-                <th>Progress</th>
-                <th>Global Unlock</th>
-                <th>Student Unlock</th>
-                <th>Action</th>
+                <th>{gettext("Week")}</th>
+                <th>{gettext("Progress")}</th>
+                <th>{gettext("Global Unlock")}</th>
+                <th>{gettext("Student Unlock")}</th>
+                <th>{gettext("Action")}</th>
               </tr>
             </thead>
             <tbody>
               <tr :for={wd <- course_data.weeks}>
-                <td class="font-medium">Week {wd.week.number}: {wd.week.title}</td>
+                <td class="font-medium">{gettext("Week")} {wd.week.number}: {wd.week.title}</td>
                 <td>
                   <span class={[
                     "badge badge-sm",
@@ -130,12 +130,12 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Progress do
                   </span>
                 </td>
                 <td>
-                  <span :if={wd.week.is_unlocked} class="badge badge-sm badge-info">Yes</span>
-                  <span :if={!wd.week.is_unlocked} class="badge badge-sm badge-ghost">No</span>
+                  <span :if={wd.week.is_unlocked} class="badge badge-sm badge-info">{gettext("Yes")}</span>
+                  <span :if={!wd.week.is_unlocked} class="badge badge-sm badge-ghost">{gettext("No")}</span>
                 </td>
                 <td>
-                  <span :if={wd.student_unlocked} class="badge badge-sm badge-success">Unlocked</span>
-                  <span :if={!wd.student_unlocked} class="badge badge-sm badge-ghost">Locked</span>
+                  <span :if={wd.student_unlocked} class="badge badge-sm badge-success">{gettext("Unlocked")}</span>
+                  <span :if={!wd.student_unlocked} class="badge badge-sm badge-ghost">{gettext("Locked")}</span>
                 </td>
                 <td>
                   <button
@@ -146,7 +146,7 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Progress do
                       if(wd.student_unlocked, do: "btn-warning", else: "btn-success")
                     ]}
                   >
-                    {if wd.student_unlocked, do: "Lock", else: "Unlock"}
+                    {if wd.student_unlocked, do: gettext("Lock"), else: gettext("Unlock")}
                   </button>
                 </td>
               </tr>
@@ -156,7 +156,7 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Progress do
       </div>
 
       <.link navigate={~p"/admin/students"} class="btn btn-ghost btn-sm mt-4">
-        <.icon name="hero-arrow-left" class="size-4" /> Back to Students
+        <.icon name="hero-arrow-left" class="size-4" /> {gettext("Back to Students")}
       </.link>
     </Layouts.app>
     """

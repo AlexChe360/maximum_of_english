@@ -9,7 +9,7 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
 
     socket =
       socket
-      |> assign(page_title: "Students")
+      |> assign(page_title: gettext("Students"))
       |> assign(students: students)
       |> assign(generated_password: nil)
       |> assign(generated_for: nil)
@@ -27,10 +27,10 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
         {:noreply,
          socket
          |> assign(generated_password: password, generated_for: student_id)
-         |> put_flash(:info, "Password generated for #{student.email}")}
+         |> put_flash(:info, gettext("Password generated for %{email}", email: student.email))}
 
       {:error, _} ->
-        {:noreply, put_flash(socket, :error, "Failed to generate password")}
+        {:noreply, put_flash(socket, :error, gettext("Failed to generate password"))}
     end
   end
 
@@ -43,44 +43,44 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
       <.header>
-        Students
-        <:subtitle>{length(@students)} registered students</:subtitle>
+        {gettext("Students")}
+        <:subtitle>{length(@students)} {gettext("registered students")}</:subtitle>
       </.header>
 
       <div :if={@generated_password} class="alert alert-success my-4 flex-col sm:flex-row gap-2">
         <div class="min-w-0">
-          <p class="font-semibold text-sm">Generated password (copy it now, it won't be shown again):</p>
+          <p class="font-semibold text-sm">{gettext("Generated password (copy it now, it won't be shown again):")}</p>
           <code class="text-base sm:text-lg select-all bg-base-100 px-3 py-1 rounded break-all">{@generated_password}</code>
         </div>
-        <button phx-click="dismiss_password" class="btn btn-sm btn-ghost shrink-0">Dismiss</button>
+        <button phx-click="dismiss_password" class="btn btn-sm btn-ghost shrink-0">{gettext("Dismiss")}</button>
       </div>
 
       <.table id="students" rows={@students}>
-        <:col :let={student} label="Email">{student.email}</:col>
-        <:col :let={student} label="Has Password">
-          <span :if={student.hashed_password} class="badge badge-sm badge-success">Yes</span>
-          <span :if={!student.hashed_password} class="badge badge-sm badge-warning">No</span>
+        <:col :let={student} label={gettext("Email")}>{student.email}</:col>
+        <:col :let={student} label={gettext("Has Password")}>
+          <span :if={student.hashed_password} class="badge badge-sm badge-success">{gettext("Yes")}</span>
+          <span :if={!student.hashed_password} class="badge badge-sm badge-warning">{gettext("No")}</span>
         </:col>
-        <:col :let={student} label="Registered">{Calendar.strftime(student.inserted_at, "%Y-%m-%d")}</:col>
+        <:col :let={student} label={gettext("Registered")}>{Calendar.strftime(student.inserted_at, "%Y-%m-%d")}</:col>
         <:action :let={student}>
           <button
             phx-click="generate_password"
             phx-value-id={student.id}
-            data-confirm="Generate a new password? This will replace any existing password."
+            data-confirm={gettext("Generate a new password? This will replace any existing password.")}
             class="btn btn-xs btn-primary"
           >
-            Generate Password
+            {gettext("Generate Password")}
           </button>
         </:action>
         <:action :let={student}>
           <.link navigate={~p"/admin/students/#{student.id}/progress"} class="link link-primary text-sm">
-            Progress
+            {gettext("Progress")}
           </.link>
         </:action>
       </.table>
 
       <.link navigate={~p"/admin"} class="btn btn-ghost btn-sm mt-4">
-        <.icon name="hero-arrow-left" class="size-4" /> Back to Dashboard
+        <.icon name="hero-arrow-left" class="size-4" /> {gettext("Back to Dashboard")}
       </.link>
     </Layouts.app>
     """

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 
-#: lib/maximum_of_english_web/components/core_components.ex:368
+#: lib/maximum_of_english_web/components/core_components.ex:369
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
@@ -37,25 +37,24 @@ msgstr ""
 msgid "Creating account..."
 msgstr ""
 
-#: lib/maximum_of_english_web/live/user_live/login.ex:16
-#, elixir-autogen, elixir-format
-msgid "Don't have an account?"
-msgstr ""
-
-#: lib/maximum_of_english_web/live/user_live/login.ex:40
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:59
+#: lib/maximum_of_english_web/live/placement_live.ex:60
+#: lib/maximum_of_english_web/live/user_live/login.ex:32
 #: lib/maximum_of_english_web/live/user_live/registration.ex:37
+#: lib/maximum_of_english_web/live/user_live/settings.ex:23
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr ""
 
+#: lib/maximum_of_english_web/live/landing_live.ex:26
 #: lib/maximum_of_english_web/live/user_live/login.ex:11
-#: lib/maximum_of_english_web/live/user_live/login.ex:61
+#: lib/maximum_of_english_web/live/user_live/login.ex:53
 #: lib/maximum_of_english_web/live/user_live/registration.ex:18
 #, elixir-autogen, elixir-format
 msgid "Log in"
 msgstr ""
 
-#: lib/maximum_of_english_web/live/user_live/login.ex:48
+#: lib/maximum_of_english_web/live/user_live/login.ex:40
 #: lib/maximum_of_english_web/live/user_live/registration.ex:45
 #, elixir-autogen, elixir-format
 msgid "Password"
@@ -66,14 +65,9 @@ msgstr ""
 msgid "Register for an account"
 msgstr ""
 
-#: lib/maximum_of_english_web/live/user_live/login.ex:56
+#: lib/maximum_of_english_web/live/user_live/login.ex:48
 #, elixir-autogen, elixir-format
 msgid "Remember me"
-msgstr ""
-
-#: lib/maximum_of_english_web/live/user_live/login.ex:21
-#, elixir-autogen, elixir-format
-msgid "Sign up"
 msgstr ""
 
 #: lib/maximum_of_english_web/components/layouts.ex:79
@@ -96,12 +90,590 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/maximum_of_english_web/live/user_live/login.ex:22
-#, elixir-autogen, elixir-format
-msgid "for an account now."
-msgstr ""
-
 #: lib/maximum_of_english_web/live/user_live/registration.ex:20
 #, elixir-autogen, elixir-format
 msgid "to your account now."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:124
+#, elixir-autogen, elixir-format
+msgid "A link to confirm your email change has been sent to the new address."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:14
+#, elixir-autogen, elixir-format
+msgid "Account Settings"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:117
+#, elixir-autogen, elixir-format
+msgid "Action"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:14
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:27
+#, elixir-autogen, elixir-format
+msgid "Admin Dashboard"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:93
+#, elixir-autogen, elixir-format
+msgid "Audio exercises to improve your listening skills and pronunciation."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:83
+#, elixir-autogen, elixir-format
+msgid "Back to Dashboard"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:177
+#, elixir-autogen, elixir-format
+msgid "Back to Home"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:159
+#, elixir-autogen, elixir-format
+msgid "Back to Students"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:27
+#, elixir-autogen, elixir-format
+msgid "Change Email"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:27
+#, elixir-autogen, elixir-format
+msgid "Changing..."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:186
+#, elixir-autogen, elixir-format
+msgid "Completed"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:58
+#, elixir-autogen, elixir-format
+msgid "Confirm new password"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:313
+#, elixir-autogen, elixir-format
+msgid "Congratulations! Lesson marked as completed."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:33
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:64
+#, elixir-autogen, elixir-format
+msgid "Courses"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:65
+#, elixir-autogen, elixir-format
+msgid "Create and manage courses, weeks, and lessons."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:13
+#, elixir-autogen, elixir-format
+msgid "Dashboard"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:55
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:103
+#, elixir-autogen, elixir-format
+msgid "Dismiss"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:199
+#, elixir-autogen, elixir-format
+msgid "Download Materials"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:400
+#, elixir-autogen, elixir-format
+msgid "Drag to match"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:77
+#, elixir-autogen, elixir-format
+msgid "Email change link is invalid or it has expired."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:74
+#, elixir-autogen, elixir-format
+msgid "Email changed successfully."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:203
+#, elixir-autogen, elixir-format
+msgid "Email is required"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:85
+#, elixir-autogen, elixir-format
+msgid "Engaging texts with vocabulary to build your reading comprehension."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:168
+#, elixir-autogen, elixir-format
+msgid "English proficiency"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:33
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:34
+#, elixir-autogen, elixir-format
+msgid "Failed to generate password"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:37
+#, elixir-autogen, elixir-format
+msgid "Find out your English level by answering a few questions."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:72
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:93
+#, elixir-autogen, elixir-format
+msgid "Generate Password"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:69
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:90
+#, elixir-autogen, elixir-format
+msgid "Generate a new password? This will replace any existing password."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:52
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:100
+#, elixir-autogen, elixir-format
+msgid "Generated password (copy it now, it won't be shown again):"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:47
+#, elixir-autogen, elixir-format
+msgid "Get Your Level"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:55
+#, elixir-autogen, elixir-format
+msgid "Get assigned to a structured course with weekly content."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:115
+#, elixir-autogen, elixir-format
+msgid "Global Unlock"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:75
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:131
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:439
+#, elixir-autogen, elixir-format
+msgid "Grammar"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:60
+#, elixir-autogen, elixir-format
+msgid "Has Password"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:35
+#, elixir-autogen, elixir-format
+msgid "How It Works"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:390
+#, elixir-autogen, elixir-format
+msgid "Items"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:54
+#, elixir-autogen, elixir-format
+msgid "Join a Course"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:61
+#, elixir-autogen, elixir-format
+msgid "Learn & Progress"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:299
+#, elixir-autogen, elixir-format
+msgid "Lesson Test"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:166
+#, elixir-autogen, elixir-format
+msgid "Level"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:91
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:147
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:441
+#, elixir-autogen, elixir-format
+msgid "Listening"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:149
+#, elixir-autogen, elixir-format
+msgid "Lock"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:138
+#, elixir-autogen, elixir-format
+msgid "Locked"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:36
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:49
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:56
+#, elixir-autogen, elixir-format
+msgid "Manage"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:71
+#, elixir-autogen, elixir-format
+msgid "Manage placement test questions and view results."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:15
+#, elixir-autogen, elixir-format
+msgid "Manage your account email address and password settings"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:28
+#, elixir-autogen, elixir-format
+msgid "Manage your courses, lessons, and tests."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:366
+#, elixir-autogen, elixir-format
+msgid "Mark as Complete"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:326
+#, elixir-autogen, elixir-format
+msgid "Matching"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:47
+#, elixir-autogen, elixir-format
+msgid "Name"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:202
+#, elixir-autogen, elixir-format
+msgid "Name is required"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:51
+#, elixir-autogen, elixir-format
+msgid "New password"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:143
+#, elixir-autogen, elixir-format
+msgid "Next"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:62
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:134
+#, elixir-autogen, elixir-format
+msgid "No"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:93
+#, elixir-autogen, elixir-format
+msgid "No active placement test available at this time."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:259
+#, elixir-autogen, elixir-format
+msgid "No courses available yet. Please contact your curator."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:30
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:31
+#, elixir-autogen, elixir-format
+msgid "Password generated for %{email}"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:73
+#, elixir-autogen, elixir-format
+msgid "Phone"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:40
+#, elixir-autogen, elixir-format
+msgid "Placement Results"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:40
+#: lib/maximum_of_english_web/live/placement_live.ex:12
+#: lib/maximum_of_english_web/live/placement_live.ex:35
+#, elixir-autogen, elixir-format
+msgid "Placement Test"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:47
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:70
+#, elixir-autogen, elixir-format
+msgid "Placement Tests"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:137
+#, elixir-autogen, elixir-format
+msgid "Previous"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:77
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:114
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:106
+#, elixir-autogen, elixir-format
+msgid "Progress"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:104
+#, elixir-autogen, elixir-format
+msgid "Question"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:83
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:139
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:440
+#, elixir-autogen, elixir-format
+msgid "Reading"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:103
+#, elixir-autogen, elixir-format
+msgid "Ready to Start?"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:48
+#, elixir-autogen, elixir-format
+msgid "Receive your level assessment from Beginner to C1."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:64
+#, elixir-autogen, elixir-format
+msgid "Registered"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:318
+#, elixir-autogen, elixir-format
+msgid "Retry Test"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:62
+#, elixir-autogen, elixir-format
+msgid "Save Password"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/user_live/settings.ex:61
+#, elixir-autogen, elixir-format
+msgid "Saving..."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:161
+#, elixir-autogen, elixir-format
+msgid "Score"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:312
+#, elixir-autogen, elixir-format
+msgid "Score:"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:243
+#, elixir-autogen, elixir-format
+msgid "Select a lesson to start learning"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:107
+#, elixir-autogen, elixir-format
+msgid "Start Placement Test"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:86
+#, elixir-autogen, elixir-format
+msgid "Start Test"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:13
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:85
+#, elixir-autogen, elixir-format
+msgid "Student Progress"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:116
+#, elixir-autogen, elixir-format
+msgid "Student Unlock"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:53
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:76
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:12
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:46
+#, elixir-autogen, elixir-format
+msgid "Students"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:62
+#, elixir-autogen, elixir-format
+msgid "Study Grammar, Reading, Listening. Pass tests and advance."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:355
+#, elixir-autogen, elixir-format
+msgid "Submit Answers"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:147
+#, elixir-autogen, elixir-format
+msgid "Submit Test"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:23
+#, elixir-autogen, elixir-format
+msgid "Take Placement Test"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:41
+#, elixir-autogen, elixir-format
+msgid "Take a quick test to determine your English level."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:104
+#, elixir-autogen, elixir-format
+msgid "Take your placement test now and begin your English learning journey."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:173
+#, elixir-autogen, elixir-format
+msgid "Thank you, %{name}! Your results have been saved. Our team will contact you to assign you to the appropriate course."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:252
+#, elixir-autogen, elixir-format
+msgid "This week is not yet unlocked. Please wait for your curator to unlock it."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:149
+#, elixir-autogen, elixir-format
+msgid "Unlock"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:137
+#, elixir-autogen, elixir-format
+msgid "Unlocked"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:77
+#, elixir-autogen, elixir-format
+msgid "Video lessons and downloadable materials to master English grammar."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:43
+#, elixir-autogen, elixir-format
+msgid "View"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/dashboard_live.ex:77
+#, elixir-autogen, elixir-format
+msgid "View students and manage their week access."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:209
+#, elixir-autogen, elixir-format
+msgid "Vocabulary"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:113
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:122
+#, elixir-autogen, elixir-format
+msgid "Week"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:251
+#, elixir-autogen, elixir-format
+msgid "Week Locked"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:76
+#, elixir-autogen, elixir-format
+msgid "Weeks"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:6
+#, elixir-autogen, elixir-format
+msgid "Welcome"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:70
+#, elixir-autogen, elixir-format
+msgid "What You Get"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:61
+#: lib/maximum_of_english_web/live/admin/student_live/progress.ex:133
+#, elixir-autogen, elixir-format
+msgid "Yes"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:305
+#, elixir-autogen, elixir-format
+msgid "You have already completed this lesson. Well done!"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:314
+#, elixir-autogen, elixir-format
+msgid "You need at least 70% to pass. Try again!"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:42
+#, elixir-autogen, elixir-format
+msgid "Your Information"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:157
+#, elixir-autogen, elixir-format
+msgid "Your Result"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:222
+#, elixir-autogen, elixir-format
+msgid "Your browser does not support audio."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:195
+#, elixir-autogen, elixir-format
+msgid "Your browser does not support video."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:53
+#, elixir-autogen, elixir-format
+msgid "Your name"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/landing_live.ex:19
+#, elixir-autogen, elixir-format
+msgid "Your personal path to fluency. Learn English with structured courses, weekly lessons, and progress tracking — all guided by a curator."
+msgstr ""
+
+#: lib/maximum_of_english_web/live/student_dashboard_live.ex:114
+#, elixir-autogen, elixir-format
+msgid "lessons completed"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:39
+#, elixir-autogen, elixir-format
+msgid "questions"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/admin/student_live/index.ex:47
+#, elixir-autogen, elixir-format
+msgid "registered students"
+msgstr ""
+
+#: lib/maximum_of_english_web/live/placement_live.ex:66
+#, elixir-autogen, elixir-format
+msgid "your@email.com"
 msgstr ""
