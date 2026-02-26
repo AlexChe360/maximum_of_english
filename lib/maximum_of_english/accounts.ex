@@ -37,10 +37,10 @@ defmodule MaximumOfEnglish.Accounts do
     end
   end
 
-  def ensure_student_account(email) do
+  def ensure_student_account(email, attrs \\ %{}) do
     case get_user_by_email(email) do
       %User{} = user -> {:ok, user}
-      nil -> register_user(%{email: email, role: "student"})
+      nil -> register_user(Map.merge(%{email: email, role: "student"}, attrs))
     end
   end
 

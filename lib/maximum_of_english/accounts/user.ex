@@ -5,7 +5,9 @@ defmodule MaximumOfEnglish.Accounts.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
+    field :name, :string
     field :email, :string
+    field :level, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :role, :string, default: "student"
@@ -28,7 +30,7 @@ defmodule MaximumOfEnglish.Accounts.User do
   """
   def email_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email])
+    |> cast(attrs, [:email, :name, :level])
     |> validate_email(opts)
   end
 
@@ -114,7 +116,7 @@ defmodule MaximumOfEnglish.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :role])
+    |> cast(attrs, [:email, :password, :role, :name, :level])
     |> validate_email(opts)
     |> validate_inclusion(:role, ~w(admin student))
     |> validate_password(opts)

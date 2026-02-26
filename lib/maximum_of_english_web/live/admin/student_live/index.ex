@@ -24,10 +24,11 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
   end
 
   @impl true
-  def handle_event("add_student", %{"email" => email, "password" => password}, socket) do
+  def handle_event("add_student", %{"email" => email, "password" => password, "name" => name, "level" => level}, socket) do
     password = if password == "", do: Accounts.generate_password(), else: password
+    attrs = %{name: name, level: if(level == "", do: nil, else: level)}
 
-    case Accounts.ensure_student_account(email) do
+    case Accounts.ensure_student_account(email, attrs) do
       {:ok, student} ->
         case Accounts.set_user_password(student, password) do
           {:ok, _} ->
@@ -95,8 +96,24 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
           <h3 class="card-title text-base">{gettext("Add Student")}</h3>
           <form phx-submit="add_student" class="flex flex-col sm:flex-row items-end gap-3">
             <div class="flex-1 w-full">
+              <label class="label text-sm">{gettext("Name")}</label>
+              <input type="text" name="name" placeholder={gettext("Student name")} class="input w-full" required />
+            </div>
+            <div class="flex-1 w-full">
               <label class="label text-sm">{gettext("Email")}</label>
               <input type="email" name="email" placeholder="student@example.com" class="input w-full" required />
+            </div>
+            <div class="flex-1 w-full">
+              <label class="label text-sm">{gettext("Level")}</label>
+              <select name="level" class="select w-full">
+                <option value="">—</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Elementary">Elementary</option>
+                <option value="Pre-Intermediate">Pre-Intermediate</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Upper-Intermediate">Upper-Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
             </div>
             <div class="flex-1 w-full">
               <label class="label text-sm">{gettext("Password")}</label>
@@ -119,7 +136,11 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
       </div>
 
       <.table id="students" rows={@students}>
+        <:col :let={student} label={gettext("Name")}>{student.name}</:col>
         <:col :let={student} label={gettext("Email")}>{student.email}</:col>
+        <:col :let={student} label={gettext("Level")}>
+          <span :if={student.level} class="badge badge-sm badge-info">{student.level}</span>
+        </:col>
         <:col :let={student} label={gettext("Has Password")}>
           <span :if={student.hashed_password} class="badge badge-sm badge-success">{gettext("Yes")}</span>
           <span :if={!student.hashed_password} class="badge badge-sm badge-warning">{gettext("No")}</span>

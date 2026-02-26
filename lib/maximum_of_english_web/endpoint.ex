@@ -27,6 +27,9 @@ defmodule MaximumOfEnglishWeb.Endpoint do
     only: MaximumOfEnglishWeb.static_paths(),
     raise_on_missing_only: code_reloading?
 
+  # Serve uploaded files from persistent storage (outside the release)
+  plug MaximumOfEnglishWeb.UploadStaticPlug
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

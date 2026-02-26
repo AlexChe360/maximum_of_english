@@ -23,6 +23,10 @@ end
 config :maximum_of_english, MaximumOfEnglishWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 
+if upload_path = System.get_env("UPLOAD_PATH") do
+  config :maximum_of_english, :upload_path, upload_path
+end
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

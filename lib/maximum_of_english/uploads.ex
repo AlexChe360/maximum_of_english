@@ -1,8 +1,19 @@
 defmodule MaximumOfEnglish.Uploads do
   @moduledoc """
   Handles file upload storage and deletion on the local filesystem.
-  Files are stored in priv/static/uploads/{subdir}/{uuid}{ext}.
+  Files are stored in {upload_dir}/{subdir}/{uuid}{ext}.
+
+  In dev, defaults to priv/static/uploads.
+  In prod, uses UPLOAD_PATH env var (e.g., /var/data/uploads).
   """
+
+  @doc """
+  Returns the root uploads directory.
+  """
+  def upload_dir do
+    Application.get_env(:maximum_of_english, :upload_path) ||
+      Application.app_dir(:maximum_of_english, "priv/static/uploads")
+  end
 
   @doc """
   Consumes an upload from the socket and saves it to disk.
@@ -15,7 +26,7 @@ defmodule MaximumOfEnglish.Uploads do
           Phoenix.LiveView.consume_uploaded_entries(socket, upload_name, fn %{path: tmp_path}, entry ->
             ext = Path.extname(entry.client_name)
             filename = generate_filename() <> ext
-            dest_dir = static_path("uploads/#{subdir}")
+            dest_dir = Path.join(upload_dir(), subdir)
             File.mkdir_p!(dest_dir)
             dest = Path.join(dest_dir, filename)
             File.cp!(tmp_path, dest)
@@ -37,8 +48,8 @@ defmodule MaximumOfEnglish.Uploads do
   def delete_file(""), do: :ok
 
   def delete_file("/uploads/" <> rest) do
-    full_path = static_path("uploads/#{rest}")
-    uploads_root = static_path("uploads") |> Path.expand()
+    full_path = Path.join(upload_dir(), rest)
+    uploads_root = upload_dir() |> Path.expand()
 
     if String.starts_with?(Path.expand(full_path), uploads_root) do
       File.rm(full_path)
@@ -50,15 +61,11 @@ defmodule MaximumOfEnglish.Uploads do
   def delete_file(_), do: :ok
 
   def static_uploads_path(subdir) do
-    static_path("uploads/#{subdir}")
+    Path.join(upload_dir(), subdir)
   end
 
   def generate_unique_filename(ext) do
     generate_filename() <> ext
-  end
-
-  defp static_path(path) do
-    Application.app_dir(:maximum_of_english, "priv/static/#{path}")
   end
 
   defp generate_filename do
