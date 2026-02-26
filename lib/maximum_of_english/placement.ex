@@ -57,6 +57,8 @@ defmodule MaximumOfEnglish.Placement do
     %PlacementAnswerOption{} |> PlacementAnswerOption.changeset(attrs) |> Repo.insert()
   end
 
+  def delete_option(%PlacementAnswerOption{} = o), do: Repo.delete(o)
+
   # --- Results ---
 
   def list_results do

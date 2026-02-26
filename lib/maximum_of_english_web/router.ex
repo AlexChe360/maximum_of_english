@@ -90,6 +90,7 @@ defmodule MaximumOfEnglishWeb.Router do
       live "/weeks/:week_id/lessons/:id/edit", LessonLive.Form
       live "/lessons/:lesson_id/test", TestLive.Form
       live "/placement-tests", PlacementTestLive.Index
+      live "/placement-tests/:id/edit", PlacementTestLive.Form
       live "/placement-results", PlacementResultLive.Index
       live "/students", StudentLive.Index
       live "/students/:id/progress", StudentLive.Progress

@@ -23,7 +23,7 @@ defmodule MaximumOfEnglishWeb.Admin.LessonLive.Form do
       |> assign(lesson: lesson)
       |> assign(form: to_form(changeset))
       |> assign(selected_kind: lesson.kind || "grammar")
-      |> allow_upload(:video, accept: :any, max_entries: 1, max_file_size: 200_000_000)
+      |> allow_upload(:video, accept: :any, max_entries: 1, max_file_size: 1_000_000_000)
       |> allow_upload(:audio, accept: :any, max_entries: 1, max_file_size: 50_000_000)
       |> allow_upload(:image, accept: ~w(.jpg .jpeg .png .gif .webp), max_entries: 1, max_file_size: 10_000_000)
       |> allow_upload(:file, accept: :any, max_entries: 1, max_file_size: 50_000_000)

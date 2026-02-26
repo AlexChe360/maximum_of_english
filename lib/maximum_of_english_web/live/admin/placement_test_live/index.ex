@@ -36,6 +36,12 @@ defmodule MaximumOfEnglishWeb.Admin.PlacementTestLive.Index do
           </span>
         </:col>
         <:action :let={test}>
+          <.link navigate={~p"/admin/placement-tests/#{test.id}/edit"} class="link link-primary text-sm mr-3">
+            Edit
+          </.link>
+          <.link phx-click="toggle_active" phx-value-id={test.id} class={"link text-sm mr-3 #{if test.is_active, do: "link-warning", else: "link-success"}"}>
+            {if test.is_active, do: "Deactivate", else: "Activate"}
+          </.link>
           <.link phx-click="delete" phx-value-id={test.id} data-confirm="Delete this test?" class="link link-error text-sm">
             Delete
           </.link>
@@ -52,6 +58,13 @@ defmodule MaximumOfEnglishWeb.Admin.PlacementTestLive.Index do
   @impl true
   def handle_event("create_test", _params, socket) do
     {:ok, _} = Placement.create_test(%{title: "Placement Test #{length(socket.assigns.tests) + 1}"})
+    {:noreply, assign(socket, tests: Placement.list_tests())}
+  end
+
+  @impl true
+  def handle_event("toggle_active", %{"id" => id}, socket) do
+    test = Placement.get_test!(id)
+    {:ok, _} = Placement.update_test(test, %{is_active: !test.is_active})
     {:noreply, assign(socket, tests: Placement.list_tests())}
   end
 

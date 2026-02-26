@@ -13,8 +13,46 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
       |> assign(students: students)
       |> assign(generated_password: nil)
       |> assign(generated_for: nil)
+      |> assign(show_add_form: false)
 
     {:ok, socket}
+  end
+
+  @impl true
+  def handle_event("toggle_add_form", _params, socket) do
+    {:noreply, assign(socket, show_add_form: !socket.assigns.show_add_form)}
+  end
+
+  @impl true
+  def handle_event("add_student", %{"email" => email, "password" => password}, socket) do
+    password = if password == "", do: Accounts.generate_password(), else: password
+
+    case Accounts.ensure_student_account(email) do
+      {:ok, student} ->
+        case Accounts.set_user_password(student, password) do
+          {:ok, _} ->
+            {:noreply,
+             socket
+             |> assign(
+               students: Accounts.list_students(),
+               show_add_form: false,
+               generated_password: password,
+               generated_for: student.id
+             )
+             |> put_flash(:info, gettext("Student %{email} created", email: email))}
+
+          {:error, _} ->
+            {:noreply, put_flash(socket, :error, gettext("Failed to set password"))}
+        end
+
+      {:error, changeset} ->
+        message =
+          changeset
+          |> Ecto.Changeset.traverse_errors(fn {msg, _opts} -> msg end)
+          |> Enum.map_join(", ", fn {field, msgs} -> "#{field}: #{Enum.join(msgs, ", ")}" end)
+
+        {:noreply, put_flash(socket, :error, message)}
+    end
   end
 
   @impl true
@@ -45,7 +83,32 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
       <.header>
         {gettext("Students")}
         <:subtitle>{length(@students)} {gettext("registered students")}</:subtitle>
+        <:actions>
+          <button phx-click="toggle_add_form" class="btn btn-primary btn-sm">
+            <.icon name="hero-plus" class="size-4" /> {gettext("Add Student")}
+          </button>
+        </:actions>
       </.header>
+
+      <div :if={@show_add_form} class="card bg-base-200 shadow-sm my-4">
+        <div class="card-body">
+          <h3 class="card-title text-base">{gettext("Add Student")}</h3>
+          <form phx-submit="add_student" class="flex flex-col sm:flex-row items-end gap-3">
+            <div class="flex-1 w-full">
+              <label class="label text-sm">{gettext("Email")}</label>
+              <input type="email" name="email" placeholder="student@example.com" class="input w-full" required />
+            </div>
+            <div class="flex-1 w-full">
+              <label class="label text-sm">{gettext("Password")}</label>
+              <input type="text" name="password" placeholder={gettext("Leave empty to auto-generate")} class="input w-full" />
+            </div>
+            <div class="flex gap-2">
+              <button type="submit" class="btn btn-primary btn-sm">{gettext("Create")}</button>
+              <button type="button" phx-click="toggle_add_form" class="btn btn-ghost btn-sm">{gettext("Cancel")}</button>
+            </div>
+          </form>
+        </div>
+      </div>
 
       <div :if={@generated_password} class="alert alert-success my-4 flex-col sm:flex-row gap-2">
         <div class="min-w-0">
