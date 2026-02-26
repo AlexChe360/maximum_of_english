@@ -20,6 +20,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
       |> assign(completed_ids: MapSet.new())
       |> assign(test_answers: %{})
       |> assign(test_result: nil)
+      |> assign(test_unlocked: true)
       |> assign(student_id: user.id)
       |> assign(student_unlocked_ids: MapSet.new())
 
@@ -235,6 +236,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                   test_answers={@test_answers}
                   test_result={@test_result}
                   completed={MapSet.member?(@completed_ids, @selected_lesson.id)}
+                  test_unlocked={@test_unlocked}
                 />
               <% else %>
                 <div class="card bg-base-200 shadow-sm">
@@ -299,12 +301,18 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
             {gettext("Lesson Test")}
           </h4>
 
-          <%= if @completed do %>
-            <div class="alert alert-success">
-              <.icon name="hero-check-circle" class="size-5" />
-              <span>{gettext("You have already completed this lesson. Well done!")}</span>
+          <%= if not @test_unlocked do %>
+            <div class="alert alert-warning">
+              <.icon name="hero-lock-closed" class="size-5" />
+              <span>{gettext("Complete all Reading and Listening lessons first to unlock this test.")}</span>
             </div>
           <% else %>
+            <%= if @completed do %>
+              <div class="alert alert-success">
+                <.icon name="hero-check-circle" class="size-5" />
+                <span>{gettext("You have already completed this lesson. Well done!")}</span>
+              </div>
+            <% else %>
             <%= if @test_result do %>
               <div class={"alert #{if @test_result.passed, do: "alert-success", else: "alert-error"}"}>
                 <.icon name={if @test_result.passed, do: "hero-check-circle", else: "hero-x-circle"} class="size-5" />
@@ -355,6 +363,7 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
                   {gettext("Submit Answers")}
                 </button>
               </div>
+            <% end %>
             <% end %>
           <% end %>
         </div>
@@ -480,7 +489,25 @@ defmodule MaximumOfEnglishWeb.StudentDashboardLive do
     # Pre-shuffle matching question answers
     test_answers = init_matching_answers(lesson.id)
 
-    {:noreply, assign(socket, selected_lesson: lesson, test_answers: test_answers, test_result: nil)}
+    # Grammar test unlocks after passing at least one reading or listening lesson
+    test_unlocked =
+      if lesson.kind == "grammar" do
+        completed = socket.assigns.completed_ids
+
+        week_lessons = socket.assigns.selected_week.lessons
+        has_any_rl_completed =
+          Enum.any?(week_lessons, fn l ->
+            l.kind in ["reading", "listening"] and MapSet.member?(completed, l.id)
+          end)
+
+        # If there are no reading/listening lessons, unlock anyway
+        has_rl_lessons = Enum.any?(week_lessons, &(&1.kind in ["reading", "listening"]))
+        not has_rl_lessons or has_any_rl_completed
+      else
+        true
+      end
+
+    {:noreply, assign(socket, selected_lesson: lesson, test_answers: test_answers, test_result: nil, test_unlocked: test_unlocked)}
   end
 
   @impl true

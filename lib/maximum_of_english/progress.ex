@@ -92,6 +92,25 @@ defmodule MaximumOfEnglish.Progress do
 
   defp get_previous_lesson(_), do: nil
 
+  def all_lessons_of_kind_completed?(student_id, week_id, kind) do
+    lesson_ids =
+      Lesson
+      |> where(week_id: ^week_id, kind: ^kind)
+      |> select([l], l.id)
+      |> Repo.all()
+
+    case lesson_ids do
+      [] -> true
+      ids ->
+        completed_count =
+          StudentLessonProgress
+          |> where([p], p.student_id == ^student_id and p.lesson_id in ^ids)
+          |> Repo.aggregate(:count)
+
+        completed_count >= length(ids)
+    end
+  end
+
   # --- Per-Student Week Unlocking ---
 
   def week_unlocked_for_student?(student_id, week_id) do
