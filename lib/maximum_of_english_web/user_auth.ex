@@ -37,7 +37,7 @@ defmodule MaximumOfEnglishWeb.UserAuth do
 
     conn
     |> create_or_extend_session(user, params)
-    |> redirect(to: user_return_to || signed_in_path(conn))
+    |> redirect(to: user_return_to || signed_in_path(user))
   end
 
   @doc """
@@ -291,14 +291,9 @@ defmodule MaximumOfEnglishWeb.UserAuth do
   end
 
   @doc "Returns the path to redirect to after log in."
-  def signed_in_path(%Plug.Conn{assigns: %{current_scope: %Scope{user: %Accounts.User{role: "admin"}}}}) do
-    ~p"/admin"
-  end
-
-  def signed_in_path(%Plug.Conn{assigns: %{current_scope: %Scope{user: %Accounts.User{}}}}) do
-    ~p"/dashboard"
-  end
-
+  def signed_in_path(%Accounts.User{role: "admin"}), do: ~p"/admin"
+  def signed_in_path(%Accounts.User{}), do: ~p"/dashboard"
+  def signed_in_path(%Plug.Conn{assigns: %{current_scope: %Scope{user: %Accounts.User{} = user}}}), do: signed_in_path(user)
   def signed_in_path(_), do: ~p"/"
 
   @doc """
