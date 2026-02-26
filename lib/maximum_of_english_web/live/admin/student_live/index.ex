@@ -78,6 +78,17 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
   end
 
   @impl true
+  def handle_event("delete_student", %{"id" => id}, socket) do
+    student = Accounts.get_user!(id)
+    {:ok, _} = Accounts.delete_user(student)
+
+    {:noreply,
+     socket
+     |> assign(students: Accounts.list_students())
+     |> put_flash(:info, gettext("Student %{email} deleted", email: student.email))}
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash} current_scope={@current_scope}>
@@ -159,6 +170,11 @@ defmodule MaximumOfEnglishWeb.Admin.StudentLive.Index do
         <:action :let={student}>
           <.link navigate={~p"/admin/students/#{student.id}/progress"} class="link link-primary text-sm">
             {gettext("Progress")}
+          </.link>
+        </:action>
+        <:action :let={student}>
+          <.link phx-click="delete_student" phx-value-id={student.id} data-confirm={gettext("Delete this student? This cannot be undone.")} class="link link-error text-sm">
+            {gettext("Delete")}
           </.link>
         </:action>
       </.table>

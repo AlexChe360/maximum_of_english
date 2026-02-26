@@ -143,6 +143,8 @@ defmodule MaximumOfEnglish.Accounts do
   def admin?(%User{role: "admin"}), do: true
   def admin?(_), do: false
 
+  def delete_user(%User{} = user), do: Repo.delete(user)
+
   ## Settings
 
   @doc """
